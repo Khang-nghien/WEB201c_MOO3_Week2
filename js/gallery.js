@@ -8,11 +8,10 @@ function upDate(previewPic){
     2) Change the text  of the div with the id = "image" 
     to the alt text of the preview image 
     */
-    var imageDiv = document.getElementById("image");
-
+    const imageDiv = document.getElementById("image");
     imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
-
     imageDiv.innerHTML = previewPic.alt;
+    console.log("Image updated (hover/focus):", previewPic.alt);
 	}
 
 	function unDo(){
@@ -23,9 +22,18 @@ function upDate(previewPic){
     2) Change the text  of the div with the id = "image" 
     back to the original text.  You can use the html code to see what that original text was
     */
-    var imageDiv = document.getElementById("image");
-
+    const imageDiv = document.getElementById("image");
     imageDiv.style.backgroundImage = "url('')";
-    
-    imageDiv.innerHTML = "Hover over an image below to display here.";	
+    imageDiv.innerHTML = "Hover over an image below to display here.";
+    console.log("Image reset (mouseout/blur)");
 }
+
+function addTabFocus() {
+    const images = document.querySelectorAll(".preview");
+    for (let i = 0; i < images.length; i++) {
+        images[i].setAttribute("tabindex", "0");
+    }
+    console.log("Tabindex attributes added to all preview images.");
+}
+
+window.onload = addTabFocus;
